@@ -43,21 +43,9 @@ public class UITestController : PersistentSingleton<UITestController>
         _btnLoadResource.onClick.RemoveAllListeners();
         _btnLoadResource.onClick.AddListener(() =>
         {
-            Profiler.BeginSample("ResourcesLoad");
-            for (int i = 0; i < 10000; i++)
-            {
-                _image.sprite = Resources.Load<Sprite>("Topic/Card_Art_06");
-            }
-            _image.SetNativeSize();
-            Profiler.EndSample();
 
-            Profiler.BeginSample("AddressableLoad");
-            for (int i = 0; i < 10000; i++)
-            {
-                _image.sprite = AddressableUtilities.Load<Sprite>("Card_Art_01");
-            }
+            _image.sprite = Resources.Load<Sprite>(GetInputFieldText());
             _image.SetNativeSize();
-            Profiler.EndSample();
         });
 
         _btnReleaseResource.onClick.RemoveAllListeners();
@@ -70,13 +58,12 @@ public class UITestController : PersistentSingleton<UITestController>
         _btnLoadAddressable.onClick.RemoveAllListeners();
         _btnLoadAddressable.onClick.AddListener(() =>
         {
-            Profiler.BeginSample("AddressableLoad");
-            for (int i = 0; i < 10000; i++)
+            _operationHandle = AddressableUtilities.LoadAsync<Sprite>(GetInputFieldText(), (sprite) =>
             {
-                _image.sprite = AddressableUtilities.Load<Sprite>(GetInputFieldText());
-            }
-            _image.SetNativeSize();
-            Profiler.EndSample();
+                _image.sprite = sprite;
+                _image.SetNativeSize();
+            });
+            
         });
 
         _btnReleaseAddressable.onClick.RemoveAllListeners();
