@@ -15,25 +15,23 @@ MonoBehaviour:
   m_GroupName: PackCloud_2
   m_GUID: e3324275b25e43341835e554db5e470f
   m_SerializeEntries:
-  - m_GUID: 081b534850c9eeb479b5e411642892e2
-    m_Address: Assets/_Games/Scripts/UITest/GameController.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0dc8b7b433348ad4a820e89c51c3fe0c
     m_Address: Card_Health_09
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - New Label
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2dc2f472cc3907d4d90da68639521609
     m_Address: Card_Health_03
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - New Label1
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8b7772e560a317c4b9307e6b17c41e7b
     m_Address: Card_Health_06
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - test
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 95197e4e33adeef49bfe4eb74cd152aa
     m_Address: Card_Health_04

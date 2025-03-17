@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PackCloud_2_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
   m_Group: {fileID: 11400000, guid: 206777edb9502cb489c15c6ea712e612, type: 2}
-  m_StaticContent: 0
+  m_StaticContent: 1

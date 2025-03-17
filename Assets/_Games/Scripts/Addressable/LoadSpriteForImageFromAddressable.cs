@@ -13,4 +13,11 @@ public class LoadSpriteForImageFromAddressable : MonoBehaviour
             GetComponent<Image>().sprite = sprite;
         });
     }
+
+    void OnDisable()
+    {
+        var image = GetComponent<Image>();
+        AddressableUtilities.ReleaseAsset(image.sprite);
+        image.sprite = null;
+    }
 }

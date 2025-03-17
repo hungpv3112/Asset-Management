@@ -15,9 +15,9 @@ MonoBehaviour:
   m_DefaultGroup: 608426d892067774f8df0221c14944fa
   m_currentHash:
     serializedVersion: 2
-    Hash: 93730774df8ed66bd4c59e7c5a821ba9
+    Hash: 55e173f34df768e528c2f27859fa525f
   m_OptimizeCatalogSize: 0
-  m_BuildRemoteCatalog: 1
+  m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
   m_CatalogRequestsTimeout: 5
   m_DisableCatalogUpdateOnStart: 0
@@ -72,6 +72,34 @@ MonoBehaviour:
     - m_InheritedParent: 
       m_Id: 1c2ba8da988e42c4495b4d9eb892208e
       m_ProfileName: New Profile
+      m_Values:
+      - m_Id: 3c7f837b879599b438e634f2a59bd0f5
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 6c3fa8d6b1580bb4d83aeffb82e6c8de
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: b8722c1eb0b2bdb4a9edabdce9fa6a2f
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: c8447cd96b1ba364b89da2f8f933f2d9
+        m_Value: 'http://192.168.100.227:8080/[BuildTarget]'
+      - m_Id: ebb165b60eba59644b157214cb257cc4
+        m_Value: 'ServerData/[BuildTarget]'
+    - m_InheritedParent: 
+      m_Id: b9691a64a349ee84fa32b3e6c3c4ed78
+      m_ProfileName: Production
+      m_Values:
+      - m_Id: 3c7f837b879599b438e634f2a59bd0f5
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 6c3fa8d6b1580bb4d83aeffb82e6c8de
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: b8722c1eb0b2bdb4a9edabdce9fa6a2f
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: c8447cd96b1ba364b89da2f8f933f2d9
+        m_Value: 'http://192.168.100.227:8080/[BuildTarget]'
+      - m_Id: ebb165b60eba59644b157214cb257cc4
+        m_Value: 'ServerData/[BuildTarget]'
+    - m_InheritedParent: 
+      m_Id: cc60ffea85a473b4b96c8b9c9c6470eb
+      m_ProfileName: Development
       m_Values:
       - m_Id: 3c7f837b879599b438e634f2a59bd0f5
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'

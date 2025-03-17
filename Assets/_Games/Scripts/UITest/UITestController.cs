@@ -77,8 +77,8 @@ public class UITestController : PersistentSingleton<UITestController>
         _btnReleaseAddressable.onClick.RemoveAllListeners();
         _btnReleaseAddressable.onClick.AddListener(() =>
         {
-            //_image.sprite = null;
             AddressableUtilities.ReleaseAsset(_image.sprite);
+            _image.sprite = null;
         });
 
         _btnCheckSize.onClick.RemoveAllListeners();
