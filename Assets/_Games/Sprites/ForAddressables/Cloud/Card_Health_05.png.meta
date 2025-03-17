@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b3aab26a52db6be41b056ea8a7db77fa
+guid: b96b025ede500d641a782735bfb19a9d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8327129299466871294
-    second: Card_Health_01_0
+      213: -3963706360245113789
+    second: Card_Health_05_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,11 +122,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Card_Health_01_0
+      name: Card_Health_05_0
       rect:
         serializedVersion: 2
         x: 26
@@ -141,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ef168759af7ef8370800000000000000
-      internalID: 8327129299466871294
+      spriteID: 34c22a3e0161ef8c0800000000000000
+      internalID: -3963706360245113789
       vertices: []
       indices: 
       edges: []
@@ -161,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Card_Health_01_0: 8327129299466871294
+      Card_Health_05_0: -3963706360245113789
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

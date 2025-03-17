@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public static class AddressableUtilities
 {
+#region Load Asset
     public static T LoadSync<T>(AssetReference assetRef)
     {
         if (assetRef.OperationHandle.IsValid())
@@ -24,7 +25,7 @@ public static class AddressableUtilities
 
     }
 
-    public static void LoadAsync<T>(AssetReference assetRef, Action<T> onLoaded)
+    public static AsyncOperationHandle LoadAsync<T>(AssetReference assetRef, Action<T> onLoaded)
     {
         if (assetRef.OperationHandle.IsValid())
         {
@@ -53,6 +54,8 @@ public static class AddressableUtilities
                 }
             };
         }
+
+        return assetRef.OperationHandle;
     }
 
     public static void LoadSprite(AssetReference assetRef, SpriteRenderer spriteRenderer, Action<Sprite> onLoaded = null)
@@ -162,7 +165,9 @@ public static class AddressableUtilities
         var handle = addressablePrefab.InstantiateAsync(pos, Quaternion.identity);
         return handle.WaitForCompletion();
     }
+#endregion
 
+#region Release Asset
 
     public static void ReleaseInstance(GameObject gObj)
     {
@@ -189,5 +194,85 @@ public static class AddressableUtilities
     {
         Addressables.Release(asyncOperationHandle);
     }
+
+    public static void ReleaseAsset(System.Object @object)
+    {
+        if (@object == null)
+        {
+            return;
+        }
+        Addressables.Release(@object);
+    }
+    #endregion
+
+    #region Download Asset
+
+    public static void GetDownloadSizeAsync(AssetReference assetReference, Action<long> callbackSuccess, Action callbackFailed)
+    {
+        Addressables.GetDownloadSizeAsync(assetReference).Completed += ((p) =>
+        {
+            if (p.Status != AsyncOperationStatus.Succeeded)
+            {
+                callbackFailed?.Invoke();
+                return;
+            }
+
+            var downloadSizeBytes = p.Result;
+            callbackSuccess?.Invoke(downloadSizeBytes);
+        });
+    }
+
+    public static void GetDownloadSizeAsync(string key, Action<long> callbackSuccess, Action callbackFailed)
+    {
+        Addressables.GetDownloadSizeAsync(key).Completed += ((p) =>
+        {
+            if (p.Status != AsyncOperationStatus.Succeeded)
+            {
+                callbackFailed?.Invoke();
+                return;
+            }
+
+            var downloadSizeBytes = p.Result;
+            callbackSuccess?.Invoke(downloadSizeBytes);
+        });
+    }
+
+
+    public static void DownloadAsset(string key, Action onCompleted = null)
+    {
+        Addressables.DownloadDependenciesAsync(key).Completed += (handle) =>
+        {
+            onCompleted?.Invoke();
+        };
+    }
+
+    public static void DownloadAssetFromCloud(string key, Action<float> onDownloading, Action onCompleted, Action callbackFailed)
+    {
+        GameController.Instance.StartCoroutine(CoroutineDownloadAssetFromCloud(key, onDownloading, onCompleted, callbackFailed));
+    }
+
+    private static IEnumerator CoroutineDownloadAssetFromCloud(string key, Action<float> onDownloading, Action callbackSuccess, Action callbackFailed)
+    {
+        var downloadDependenciesHandle = Addressables.DownloadDependenciesAsync(key);
+        var timeStart = Time.time;
+        while (downloadDependenciesHandle.IsDone == false)
+        {
+            yield return null;
+            if (downloadDependenciesHandle.Status == AsyncOperationStatus.Failed)
+            {
+                Debug.LogError("The download process is failed :(");
+                callbackFailed?.Invoke();
+                yield break;
+            }
+
+            onDownloading?.Invoke(downloadDependenciesHandle.PercentComplete);
+        }
+
+        Debug.LogError("Download complete!");
+        Addressables.Release(downloadDependenciesHandle);
+        callbackSuccess?.Invoke();
+    }
+
+    #endregion
 
 }

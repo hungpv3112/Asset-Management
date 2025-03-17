@@ -1,7 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 //using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Profiling;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
@@ -22,12 +24,18 @@ public class UITestController : PersistentSingleton<UITestController>
     [SerializeField] private Button _btnLoadAddressable;
     [SerializeField] private Button _btnReleaseAddressable;
 
+    [SerializeField] private Button _btnCheckSize;
+    [SerializeField] private Button _btnDownload;
+
     [SerializeField] private Image _image;
 
     private AsyncOperationHandle<Sprite> _operationHandle;
 
     private void Start()
     {
+        Debug.LogError(Application.persistentDataPath);
+        Caching.ClearCache();
+
         _btnOnOffPanel.onClick.RemoveAllListeners();
         _btnOnOffPanel.onClick.AddListener(() =>
         {
@@ -63,14 +71,41 @@ public class UITestController : PersistentSingleton<UITestController>
                 _image.sprite = sprite;
                 _image.SetNativeSize();
             });
-            
+
         });
 
         _btnReleaseAddressable.onClick.RemoveAllListeners();
         _btnReleaseAddressable.onClick.AddListener(() =>
         {
-            _image.sprite = null;
-            AddressableUtilities.ReleaseAsset(_operationHandle);
+            //_image.sprite = null;
+            AddressableUtilities.ReleaseAsset(_image.sprite);
+        });
+
+        _btnCheckSize.onClick.RemoveAllListeners();
+        _btnCheckSize.onClick.AddListener(() =>
+        {
+            AddressableUtilities.GetDownloadSizeAsync(GetInputFieldText(), (size) =>
+            {
+                Debug.Log(size);
+            }, () =>
+            {
+                Debug.LogError("GetDownloadSizeAsync fail!");
+            });
+        });
+
+        _btnDownload.onClick.RemoveAllListeners();
+        _btnDownload.onClick.AddListener(() =>
+        {
+            AddressableUtilities.DownloadAssetFromCloud(GetInputFieldText(), (p)=>
+            {
+                Debug.Log($"Downloading {p}");
+            }, ()=>
+            {
+                Debug.Log($"Downloaded {GetInputFieldText()}");
+            }, ()=>
+            {
+                Debug.LogError("DownloadAssetFromCloud fail!");
+            });
         });
     }
      
